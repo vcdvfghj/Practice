@@ -12,20 +12,35 @@ public class SimpleServo implements ServoEx {
     private Servo servo;
 
     //always stored internally as radians
+
+    /** MIN_ANGLE and MAX_ANGLE are the minimum and maximum angle positions in degrees you would like to set the
+     * servo. This functionally serves as the servo's effective range.
+     * If you want to change the effective range at any point, you can do the following:*/
+
     private double maxAngle, minAngle;
 
     private final double maxPosition = 1;
     private final double minPosition = 0;
 
-    public SimpleServo(HardwareMap hw, String sm5, double minAngle, double maxAngle, AngleUnit angleUnit) {
-        servo = hw.get(Servo.class, "sm5");
+    /** To turn to positions and angles, utilize the following methods:
+
+     rotateByAngle: turns the servo a number of angle units relative to the current angle
+
+     turnToAngle: sets the absolute angle of the servo
+
+     rotateBy: turns the servo a relative positional distance from the current position
+
+     setPosition: set the absolute position of the servo (from 0 to 1)*/
+
+    public SimpleServo(HardwareMap hw, String cs5, double minAngle, double maxAngle, AngleUnit angleUnit) {
+        servo = hw.get(Servo.class, cs5);
 
         this.minAngle = toRadians(minAngle, angleUnit);
         this.maxAngle = toRadians(maxAngle, angleUnit);
     }
 
-    public SimpleServo(HardwareMap hw, String sm5, double minDegree, double maxDegree) {
-        this(hw, "sm5", minDegree, maxDegree, AngleUnit.DEGREES);
+    public SimpleServo(HardwareMap hw, String cs5, double minDegree, double maxDegree) {
+        this(hw, cs5, minDegree, maxDegree, AngleUnit.DEGREES);
     }
 
     @Override
