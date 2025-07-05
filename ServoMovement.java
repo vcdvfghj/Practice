@@ -25,14 +25,12 @@ public class ServoMovement extends LinearOpMode {
 
 
 
-
-
     public static double  target_degrees = 90;
     public static double  range_of_angles = 270;
 
     public static double angle_of_calibration = 0;
     public static double servoPos_at_calibration = 0;
-    public static double zero_position = (servoPos_at_calibration - angle_of_calibration/range_of_angles) / range_of_angles;
+    public double zero_position = (servoPos_at_calibration - angle_of_calibration/range_of_angles) / range_of_angles;
 
 
 
@@ -47,7 +45,7 @@ public class ServoMovement extends LinearOpMode {
 
 
 
-        servo = new SimpleServo(hardwareMap, "sm5", 0, 270);
+        servo = new SimpleServo(hardwareMap, "cs5", 0, 270);
         waitForStart();
         while (opModeIsActive()) {
             double target_servoPos = target_degrees/range_of_angles;
